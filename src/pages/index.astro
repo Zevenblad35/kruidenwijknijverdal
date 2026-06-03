@@ -2,10 +2,11 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import BlogCard from '../components/BlogCard.astro';
 import EventCard from '../components/EventCard.astro';
-import { blogPosts, events } from '../content/data';
+import { blogPosts } from '../content/data';
+import { upcomingEvents, syncMeta } from '../content/events-loader';
 
 const latestPosts = blogPosts.slice(0, 3);
-const upcomingEvents = events.filter(e => new Date(e.date) >= new Date()).slice(0, 3);
+const nextEvents = upcomingEvents.slice(0, 4);
 ---
 
 <BaseLayout title="Home">
@@ -31,10 +32,10 @@ const upcomingEvents = events.filter(e => new Date(e.date) >= new Date()).slice(
   <section class="stats">
     <div class="container">
       <div class="stats__grid">
-        <div class="stats__item"><span class="stats__icon">🏡</span><span class="stats__number">800+</span><span class="stats__label">Huishoudens</span></div>
-        <div class="stats__item"><span class="stats__icon">🌳</span><span class="stats__number">15</span><span class="stats__label">Straten</span></div>
-        <div class="stats__item"><span class="stats__icon">🎉</span><span class="stats__number">20+</span><span class="stats__label">Evenementen per jaar</span></div>
-        <div class="stats__item"><span class="stats__icon">🤝</span><span class="stats__number">1991</span><span class="stats__label">Sinds</span></div>
+        <div class="stats__item"><span class="stats__icon">🏡</span><span class="stats__number">6800+</span><span class="stats__label">Inwoners</span></div>
+        <div class="stats__item"><span class="stats__icon">🌳</span><span class="stats__number">Grootste</span><span class="stats__label">Wijk in Hellendoorn</span></div>
+        <div class="stats__item"><span class="stats__icon">🎉</span><span class="stats__number">{nextEvents.length}+</span><span class="stats__label">Komende evenementen</span></div>
+        <div class="stats__item"><span class="stats__icon">🤝</span><span class="stats__number">1984</span><span class="stats__label">Opgericht</span></div>
       </div>
     </div>
   </section>
@@ -62,11 +63,24 @@ const upcomingEvents = events.filter(e => new Date(e.date) >= new Date()).slice(
       <div class="section-header">
         <span class="section-header__label">Agenda</span>
         <h2 class="section-header__title">Komende evenementen</h2>
-        <p class="section-header__desc">Doe mee en ontmoet je buren bij een van deze activiteiten</p>
+        <p class="section-header__desc">
+          Doe mee en ontmoet je buren bij een van deze activiteiten
+          {syncMeta.total > 0 && <span class="sync-note">Inclusief evenementen van dekruidenwijk.nl</span>}
+        </p>
       </div>
       <div class="events-list">
-        {upcomingEvents.map(event => (
-          <EventCard title={event.title} slug={event.slug} date={event.date} time={event.time} location={event.location} description={event.description} />
+        {nextEvents.map(event => (
+          <EventCard
+            title={event.title}
+            slug={event.slug}
+            date={event.date}
+            time={event.time}
+            location={event.location}
+            description={event.description}
+            isExternal={event.isExternal}
+            url={event.url}
+            source={event.source}
+          />
         ))}
       </div>
       <div style="text-align:center; margin-top:2.5rem;">
@@ -80,7 +94,7 @@ const upcomingEvents = events.filter(e => new Date(e.date) >= new Date()).slice(
       <div class="cta__inner">
         <div class="cta__text">
           <h2>Blijf op de hoogte</h2>
-          <p>Wil je niets missen uit de Kruidenwijk? Neem contact op met de wijkraad of kom langs bij buurthuis De Tijm.</p>
+          <p>Wil je niets missen uit de Kruidenwijk? Neem contact op met de wijkraad of kom langs bij het Kulturhus.</p>
         </div>
         <a href="mailto:info@kruidenwijknijverdal.nl" class="btn btn--primary">Neem contact op</a>
       </div>
@@ -111,9 +125,10 @@ const upcomingEvents = events.filter(e => new Date(e.date) >= new Date()).slice(
   .stats__grid { display:grid; grid-template-columns:repeat(4,1fr); gap:1.5rem; }
   .stats__item { display:flex; flex-direction:column; align-items:center; text-align:center; padding:1.5rem; background:#fff; border-radius:var(--radius-md); box-shadow:var(--shadow-card); }
   .stats__icon { font-size:1.5rem; margin-bottom:.5rem; }
-  .stats__number { font-family:var(--font-display); font-size:1.8rem; font-weight:700; color:var(--sage-dark); line-height:1; }
-  .stats__label { font-size:.8rem; color:var(--text-muted); margin-top:.25rem; }
+  .stats__number { font-family:var(--font-display); font-size:1.6rem; font-weight:700; color:var(--sage-dark); line-height:1; }
+  .stats__label { font-size:.78rem; color:var(--text-muted); margin-top:.25rem; }
   .events-list { display:flex; flex-direction:column; gap:1.25rem; max-width:800px; margin:0 auto; }
+  .sync-note { display:block; font-size:.8rem; color:var(--sage); margin-top:.5rem; font-style:italic; }
   .cta { padding:4rem 0; }
   .cta__inner { display:flex; align-items:center; justify-content:space-between; gap:2rem; padding:3rem; background:linear-gradient(135deg,var(--sage-dark),var(--sage)); border-radius:var(--radius-lg); color:#fff; }
   .cta__inner h2 { color:#fff; margin-bottom:.5rem; font-size:1.6rem; }

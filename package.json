@@ -4,10 +4,15 @@
   "version": "1.0.0",
   "scripts": {
     "dev": "astro dev",
+    "fetch-events": "node scripts/fetch-events.mjs",
+    "prebuild": "node scripts/fetch-events.mjs",
     "build": "astro build",
-    "preview": "astro preview"
+    "preview": "astro preview",
+    "sync": "node scripts/fetch-events.mjs && astro build"
   },
   "dependencies": {
-    "astro": "^6.4.3"
+    "astro": "^5.8.0",
+    "cheerio": "^1.0.0",
+    "node-fetch": "^3.3.2"
   }
 }

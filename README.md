@@ -1,43 +1,51 @@
-# Astro Starter Kit: Minimal
+# 🌿 Kruidenwijk Nijverdal — Website
 
-```sh
-npm create astro@latest -- --template minimal
+Informatiewebsite voor de Kruidenwijk in Nijverdal, gebouwd met [Astro](https://astro.build).
+
+## Features
+
+- **Blog & Nieuws** — Berichten over de wijk, bewoners, duurzaamheid
+- **Evenementenagenda** — Lokale events + automatische sync met [dekruidenwijk.nl](https://dekruidenwijk.nl)
+- **Over Ons** — Informatie over de wijk, wijkraad en het Kulturhus
+- **Responsive design** — Desktop, tablet en mobiel
+
+## Installatie
+
+```bash
+npm install
+npm run dev
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## 🔄 Evenementen-synchronisatie
 
-## 🚀 Project Structure
+De site haalt automatisch evenementen op van dekruidenwijk.nl/activiteiten en toont deze naast lokale events.
 
-Inside of your Astro project, you'll see the following folders and files:
+### Hoe werkt het?
 
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
+1. Bij elke build wordt `scripts/fetch-events.mjs` uitgevoerd
+2. Probeert eerst de WordPress REST API van dekruidenwijk.nl
+3. Als fallback scraped het de activiteitenpagina (HTML)
+4. Resultaat → `src/content/external-events.json`
+5. Astro combineert lokale + externe events automatisch
+
+### Handmatig events ophalen
+
+```bash
+npm run fetch-events
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+### Automatische dagelijkse sync (GitHub Actions)
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+`.github/workflows/sync-events.yml` — elke dag om 08:00 NL-tijd:
+- Events ophalen van dekruidenwijk.nl
+- Site herbouwen en deployen
+- external-events.json committen
 
-Any static assets, like images, can be placed in the `public/` directory.
+## Content beheren
 
-## 🧞 Commands
+Bewerk `src/content/data.ts` om blogposts en lokale events toe te voegen/wijzigen.
 
-All commands are run from the root of the project, from a terminal:
+## Deployen
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+Netlify/Vercel: Build command `npm run build`, publish dir `dist`.
+De prebuild haalt automatisch events op.
