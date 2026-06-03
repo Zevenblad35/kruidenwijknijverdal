@@ -1,0 +1,65 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { events } from '../../content/data';
+
+export function getStaticPaths() {
+  return events.map(event => ({
+    params: { slug: event.slug },
+    props: { event }
+  }));
+}
+
+const { event } = Astro.props;
+
+const fullDate = new Date(event.date).toLocaleDateString('nl-NL', {
+  weekday: 'long',
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric'
+});
+---
+
+<BaseLayout title={event.title} description={event.description}>
+  <article class="event-detail">
+    <div class="event-detail__header">
+      <div class="container container--narrow" style="position:relative; z-index:1;">
+        <a href="/evenementen/" class="event-detail__back">← Terug naar evenementen</a>
+        <h1>{event.title}</h1>
+        <div class="event-detail__info">
+          <span>📅 {fullDate}</span>
+          <span>🕐 {event.time}</span>
+          <span>📍 {event.location}</span>
+        </div>
+      </div>
+    </div>
+    <div class="container container--narrow">
+      <div class="prose" set:html={event.content} />
+      <div class="event-detail__footer">
+        <a href="/evenementen/" class="btn btn--outline">← Alle evenementen</a>
+        <a href="mailto:info@kruidenwijknijverdal.nl" class="btn btn--primary">Aanmelden / Contact</a>
+      </div>
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .event-detail__header {
+    background: linear-gradient(135deg, var(--sage-dark), var(--sage));
+    padding: 4rem 0 3rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .event-detail__header::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 80% 20%, rgba(212,168,67,.12) 0%, transparent 50%);
+    pointer-events: none;
+  }
+  .event-detail__header h1 { color: #fff; font-size: clamp(1.8rem, 4vw, 2.8rem); margin-bottom: 1rem; }
+  .event-detail__back { display:inline-block; color:rgba(255,255,255,.7); font-size:.85rem; font-weight:600; margin-bottom:1.5rem; transition:color .3s; }
+  .event-detail__back:hover { color:#fff; }
+  .event-detail__info { display:flex; flex-wrap:wrap; gap:.5rem 1.5rem; color:rgba(255,255,255,.8); font-size:.95rem; }
+  .event-detail .prose { padding:3rem 0; }
+  .event-detail__footer { display:flex; gap:1rem; flex-wrap:wrap; padding:2rem 0 4rem; border-top:1px solid var(--sage-muted); }
+</style>

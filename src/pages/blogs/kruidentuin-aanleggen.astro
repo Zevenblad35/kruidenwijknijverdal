@@ -1,0 +1,62 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+<BaseLayout title="Zelf een kruidentuin aanleggen">
+<div class="ph"><div class="container"><div class="bc"><a href="/">Home</a> › <a href="/blogs">Blog</a> › Kruidentuin aanleggen</div></div></div>
+<section class="section"><div class="container pl">
+  <article class="pm">
+    <div class="ph2">🌱</div>
+    <header class="phead">
+      <div class="pmeta"><span class="tag">Tuinieren</span><span>📅 15 mei 2025</span><span>🕐 5 min leestijd</span></div>
+      <h1>Zelf een kruidentuin aanleggen in je voortuin</h1>
+      <div class="pa">Door <strong>Marieke de Vries</strong></div>
+    </header>
+    <div class="prose">
+      <p>Een kruidentuin in je voortuin is niet alleen mooi, het is ook nuttig — voor jezelf én voor de natuur. Met de juiste aanpak is het eenvoudiger dan je denkt, en de resultaten zijn meteen zichtbaar.</p>
+      <h2>Waarom een kruidentuin?</h2>
+      <p>Kruiden trekken bijen, vlinders en andere insecten aan, wat bijdraagt aan de biodiversiteit in onze wijk. Bovendien heb je altijd verse kruiden bij de hand voor in de keuken.</p>
+      <h2>Welke kruiden zijn geschikt?</h2>
+      <p>Voor een beginner zijn de volgende kruiden ideaal:</p>
+      <ul>
+        <li><strong>Lavendel</strong> – mooi paars, geurig, gelieft bij bijen</li>
+        <li><strong>Rozemarijn</strong> – winterhard, makkelijk in onderhoud</li>
+        <li><strong>Tijm</strong> – bodembedekker, bloeit vroeg in het jaar</li>
+        <li><strong>Munt</strong> – let op: plant in pot, anders groeit het overal</li>
+        <li><strong>Salie</strong> – mooie zilvergroene bladeren, goede smaakmaker</li>
+      </ul>
+      <h2>Stap voor stap</h2>
+      <p>Begin met het bepalen van de locatie. De meeste kruiden houden van zon: kies een plek die minimaal vijf uur per dag zon ontvangt. Haal vervolgens de grond goed door met wat zand en compost voor een goede drainage.</p>
+      <p>Plant de kruiden op voldoende afstand van elkaar — minimaal 25-30 cm — zodat ze goed kunnen uitgroeien. Water regelmatig maar niet te veel: kruiden houden van een droge voet.</p>
+      <h2>Inspiratie halen in de wijk</h2>
+      <p>Loop eens door de Lavendelstraat: je ziet al prachtige voorbeelden van hoe bewoners hun voortuin hebben omgevormd tot een groene, geurende kruidentuin. Heb jij ook een tuin om te laten zien? Stuur ons een foto!</p>
+    </div>
+    <div class="pcta"><p>Vragen of reacties?</p><a href="/contact" class="btn btn-outline">Neem contact op</a></div>
+  </article>
+  <aside class="ps">
+    <div class="sc2"><h3>Meer blogs</h3><ul class="sl"><li><a href="/blogs/vlindertuin-initiatief">🦋 Vlindertuin initiatief</a></li><li><a href="/blogs/groene-gevels">🌿 Groene gevels</a></li><li><a href="/blogs/wateroverlast-tips">💧 Wateroverlast tips</a></li></ul><a href="/blogs" class="btn btn-outline" style="width:100%;text-align:center;margin-top:1rem">Alle blogs</a></div>
+    <div class="sc2"><h3>Komende evenementen</h3><div class="se"><span class="sed">14 jun</span><span>Kruidenworkshop</span></div><div class="se"><span class="sed">21 jun</span><span>Wijkschoonmaakdag</span></div><div class="se"><span class="sed">5 jul</span><span>Zomerfeest</span></div><a href="/evenementen" class="btn btn-outline" style="width:100%;text-align:center;margin-top:1rem">Alle evenementen</a></div>
+  </aside>
+</div></section>
+</BaseLayout>
+<style>
+.ph { background:var(--parchment);border-bottom:1px solid var(--border);padding:1.25rem 0; }
+.bc { font-size:0.82rem;color:var(--text-light);display:flex;align-items:center;gap:0.4rem;flex-wrap:wrap; }
+.bc a { color:var(--sage-dark); }
+.pl { display:grid;grid-template-columns:1fr 300px;gap:3rem;align-items:start; }
+.ph2 { font-size:4rem;background:var(--parchment);padding:2rem;text-align:center;border-radius:4px;margin-bottom:2rem;border:1px solid var(--border); }
+.phead { margin-bottom:2rem; }
+.pmeta { display:flex;align-items:center;gap:1rem;margin-bottom:1rem;flex-wrap:wrap;font-size:0.85rem;color:var(--text-light); }
+.phead h1 { font-size:clamp(1.6rem,3vw,2.2rem);margin-bottom:0.75rem; }
+.pa { font-size:0.9rem;color:var(--text-light);font-family:'Lora',serif;font-style:italic; }
+.pcta { margin-top:3rem;padding:2rem;background:var(--parchment);border-radius:4px;border:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap; }
+.pcta p { font-family:'Lora',serif;font-style:italic; }
+.sc2 { background:var(--white);border:1px solid var(--border);border-radius:4px;padding:1.5rem;margin-bottom:1.25rem; }
+.sc2 h3 { font-size:1rem;margin-bottom:1rem;color:var(--herb-green); }
+.sl { list-style:none;display:flex;flex-direction:column;gap:0.6rem; }
+.sl a { font-size:0.9rem;color:var(--text-mid); }
+.sl a:hover { color:var(--terracotta); }
+.se { display:flex;align-items:center;gap:0.75rem;padding:0.5rem 0;border-bottom:1px solid var(--border);font-size:0.88rem;color:var(--text-mid); }
+.se:last-of-type { border-bottom:none; }
+.sed { background:var(--herb-green);color:var(--white);font-size:0.75rem;font-weight:600;padding:0.25rem 0.5rem;border-radius:2px;white-space:nowrap; }
+@media(max-width:900px){.pl{grid-template-columns:1fr;}.ps{order:-1;}}
+</style>

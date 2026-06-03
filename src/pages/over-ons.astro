@@ -1,0 +1,87 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Over Ons" description="Leer meer over de Kruidenwijk in Nijverdal en de wijkraad.">
+  <div class="page-hero">
+    <div class="container" style="position:relative; z-index:1;">
+      <h1>Over de Kruidenwijk</h1>
+      <p>Leer meer over onze groene wijk in het hart van Nijverdal.</p>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="container container--narrow">
+      <div class="prose">
+        <h2>Onze wijk</h2>
+        <p>De Kruidenwijk is een van de mooiste woonwijken van Nijverdal, gelegen in de gemeente Hellendoorn. De wijk is gebouwd begin jaren '90 en dankt haar naam aan de straatnamen die zijn vernoemd naar kruiden en specerijen: van de Basilicumstraat tot het Tijmpad, van de Lavendelstraat tot de Rozemarijnlaan.</p>
+
+        <p>Met ruim 800 huishoudens is de Kruidenwijk een levendige en hechte gemeenschap. De wijk kenmerkt zich door het vele groen, de ruime opzet en de actieve bewoners die samen zorgen voor een prettige woonomgeving.</p>
+
+        <h2>De wijkraad</h2>
+        <p>De wijkraad Kruidenwijk behartigt de belangen van alle bewoners. De raad vergadert maandelijks en bespreekt onderwerpen als verkeersveiligheid, groenonderhoud, evenementen en de sociale cohesie in de wijk.</p>
+
+        <p>De vergaderingen zijn openbaar en elke bewoner is van harte welkom om mee te praten. De vergaderingen vinden plaats in buurthuis De Tijm.</p>
+
+        <h2>Buurthuis De Tijm</h2>
+        <p>Het buurthuis is het kloppend hart van de wijk. Hier vinden vergaderingen, workshops, buurtborrels en andere activiteiten plaats. Het buurthuis is gerund door een team van enthousiaste vrijwilligers.</p>
+
+        <h2>Meedoen?</h2>
+        <p>De Kruidenwijk draait op betrokken bewoners. Of je nu wilt meehelpen bij evenementen, de buurtmoestuin, de wijkraad of gewoon een keer wilt kennismaken — je bent altijd welkom!</p>
+
+        <p>Neem contact op via <a href="mailto:info@kruidenwijknijverdal.nl">info@kruidenwijknijverdal.nl</a> of loop binnen bij buurthuis De Tijm.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--sage">
+    <div class="container">
+      <div class="info-grid">
+        <div class="info-card">
+          <span class="info-card__icon">📍</span>
+          <h3>Locatie</h3>
+          <p>Kruidenwijk, Nijverdal<br/>Gemeente Hellendoorn<br/>Overijssel, Nederland</p>
+        </div>
+        <div class="info-card">
+          <span class="info-card__icon">📧</span>
+          <h3>Contact</h3>
+          <p><a href="mailto:info@kruidenwijknijverdal.nl">info@kruidenwijknijverdal.nl</a></p>
+        </div>
+        <div class="info-card">
+          <span class="info-card__icon">🏠</span>
+          <h3>Buurthuis De Tijm</h3>
+          <p>Het hart van de wijk. Open voor vergaderingen, activiteiten en een praatje.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+  .info-card {
+    background: #fff;
+    padding: 2rem;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-card);
+    text-align: center;
+  }
+  .info-card__icon {
+    font-size: 2rem;
+    display: block;
+    margin-bottom: .75rem;
+  }
+  .info-card h3 {
+    margin-bottom: .5rem;
+    font-size: 1.1rem;
+  }
+  .info-card p {
+    font-size: .9rem;
+    color: var(--text-muted);
+    margin: 0 auto;
+  }
+</style>

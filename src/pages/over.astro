@@ -1,0 +1,110 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+const straten = [
+  { naam:'Lavendelstraat', desc:'De meest kleurrijke straat van de wijk, met in de zomer een zee van paarse lavendel in de voortuinen.', emoji:'💜' },
+  { naam:'Tijmweg', desc:'Een rustige straat met veel jonge gezinnen. Bekend om haar actieve buurtapp en gezellige sfeer.', emoji:'🌱' },
+  { naam:'Rozemarijnlaan', desc:'Brede laan met grote bomen en karakteristieke jaren-70 woningen. Een van de oudste straten van de wijk.', emoji:'🌿' },
+  { naam:'Mintpad', desc:'Korte, knusse straat met een actieve buurtgroep die regelmatig activiteiten organiseert.', emoji:'🍃' },
+  { naam:'Saliehof', desc:'Een hofje van twaalf woningen rondom een gedeelde binnentuin. Prachtig gemeenschapsproject!', emoji:'🏡' },
+  { naam:'Kruidenplein', desc:'Het hart van de wijk. Hier worden evenementen georganiseerd en ontmoeten buren elkaar.', emoji:'🎪' },
+];
+---
+<BaseLayout title="Over de wijk">
+<div class="ph"><div class="container"><div class="bc"><a href="/">Home</a> › Over de wijk</div><h1>Over de Kruidenwijk</h1><p class="pd">Een groene buurt met een warm hart in Nijverdal</p></div></div>
+<section class="section" style="background:var(--white)">
+  <div class="container two-col">
+    <div class="prose">
+      <p class="lead">De Kruidenwijk is een van de groenste buurten van Nijverdal. Met haar karakteristieke straatjes vernoemd naar planten en kruiden ademt de wijk een bijzondere sfeer van rust en gemeenschapszin.</p>
+      <p>De wijk is in de jaren '70 aangelegd en heeft door de jaren heen een sterke gemeenschapsidentiteit opgebouwd. Bewoners kennen elkaar, helpen elkaar en werken samen aan een mooie leefomgeving.</p>
+      <p>Of je nu al jaren in de Kruidenwijk woont of er net bent komen wonen: hier voel je je snel thuis.</p>
+    </div>
+    <div class="hlcards">
+      <div class="hlc"><div class="hli">🌳</div><div><h3>Groen en duurzaam</h3><p>Veel bewoners hebben hun tuin omgetoverd tot een groen paradijs, vol bloemen, kruiden en bomen.</p></div></div>
+      <div class="hlc"><div class="hli">👥</div><div><h3>Hechte gemeenschap</h3><p>Actieve wijkvereniging, regelmatige bijeenkomsten en buren die voor elkaar klaarstaan.</p></div></div>
+      <div class="hlc"><div class="hli">📍</div><div><h3>Centrale ligging</h3><p>Op loopafstand van het centrum van Nijverdal, winkels, scholen en het station.</p></div></div>
+    </div>
+  </div>
+</section>
+<section class="section" style="background:var(--cream)">
+  <div class="container">
+    <h2 class="section-title">De straten van de Kruidenwijk</h2>
+    <p class="section-subtitle">Elke straat heeft zijn eigen naam en karakter</p>
+    <div class="stg">
+      {straten.map(s => (
+        <div class="stc">
+          <div class="ste">{s.emoji}</div>
+          <div><h3 class="stn">{s.naam}</h3><p class="std">{s.desc}</p></div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+<section class="section" style="background:var(--white)">
+  <div class="container two-col">
+    <div class="prose">
+      <span class="tag">Wijkvereniging</span>
+      <h2 style="margin:0.75rem 0 1rem">Samen maken we de wijk</h2>
+      <p>De wijkvereniging Kruidenwijk bestaat al meer dan 25 jaar en is het kloppende hart van de gemeenschap. Met een enthousiast bestuur en tientallen vrijwilligers organiseren wij evenementen, beheren we groenprojecten en zijn we het aanspreekpunt voor bewoners.</p>
+      <p>Lid worden kost slechts €10 per jaar en je hebt meteen toegang tot alle activiteiten, de nieuwsbrief en het besloten buurtforum.</p>
+      <a href="/contact" class="btn btn-primary" style="margin-top:0.75rem;display:inline-block">Word lid</a>
+    </div>
+    <div class="stats-grid">
+      <div class="stat-box"><span class="sn">25+</span><span class="sl">Jaar actief</span></div>
+      <div class="stat-box"><span class="sn">180+</span><span class="sl">Leden</span></div>
+      <div class="stat-box"><span class="sn">30+</span><span class="sl">Vrijwilligers</span></div>
+      <div class="stat-box"><span class="sn">15+</span><span class="sl">Activiteiten p.j.</span></div>
+    </div>
+  </div>
+</section>
+<section class="section" style="background:var(--cream)">
+  <div class="container">
+    <h2 class="section-title">Praktische informatie</h2>
+    <p class="section-subtitle">Alles wat je als bewoner moet weten</p>
+    <div class="prac-grid">
+      {[
+        { icon:'🗑️', title:'Afval & recycling', text:'Restafval wordt elke twee weken opgehaald. GFT wekelijks. Breng glas, papier en textiel naar de inzamelpunten op het Kruidenplein.' },
+        { icon:'🌳', title:'Groenonderhoud', text:'Het gemeentelijk groen wordt verzorgd door gemeente Hellendoorn. Voor meldingen bel 0548-630630.' },
+        { icon:'🔊', title:'Overlastmeldingen', text:'Bij geluidsoverlast kun je contact opnemen via de wijkagent of melden bij het buurtoverleg.' },
+        { icon:'🚌', title:'Openbaar vervoer', text:'Buslijn 64 verbindt de Kruidenwijk met het centrum van Nijverdal en het station. Halte Lavendelstraat.' },
+      ].map(p => (
+        <div class="pcard">
+          <div class="pi">{p.icon}</div>
+          <h3>{p.title}</h3>
+          <p>{p.text}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+</BaseLayout>
+<style>
+.ph { background:linear-gradient(135deg,var(--sage-dark),var(--herb-green));padding:3rem 0 2.5rem;color:var(--white); }
+.bc { font-size:0.82rem;color:rgba(255,255,255,0.65);margin-bottom:0.75rem;display:flex;gap:0.4rem; }
+.bc a { color:rgba(255,255,255,0.65); }
+.ph h1 { color:var(--white);margin-bottom:0.5rem; }
+.pd { color:rgba(255,255,255,0.75); }
+.two-col { display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center; }
+.lead { font-family:'Lora',serif;font-size:1.15rem;line-height:1.75;color:var(--herb-green)!important;margin-bottom:1.25rem; }
+.hlcards { display:flex;flex-direction:column;gap:1.25rem; }
+.hlc { display:flex;align-items:flex-start;gap:1rem;padding:1.25rem;background:var(--cream);border:1px solid var(--border);border-radius:4px; }
+.hli { font-size:1.75rem;flex-shrink:0; }
+.hlc h3 { font-size:1rem;margin-bottom:0.35rem; }
+.hlc p { font-size:0.88rem;margin:0; }
+.stg { display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem; }
+.stc { display:flex;align-items:flex-start;gap:0.75rem;padding:1.25rem;background:var(--white);border:1px solid var(--border);border-radius:4px;transition:transform 0.2s,box-shadow 0.2s; }
+.stc:hover { transform:translateY(-3px);box-shadow:0 8px 24px rgba(61,90,50,0.1); }
+.ste { font-size:1.75rem;flex-shrink:0; }
+.stn { font-size:1rem;margin-bottom:0.35rem; }
+.std { font-size:0.85rem;margin:0;line-height:1.55; }
+.stats-grid { display:grid;grid-template-columns:1fr 1fr;gap:1.5rem; }
+.stat-box { background:var(--cream);border:1px solid var(--border);border-radius:4px;padding:1.5rem;text-align:center; }
+.sn { display:block;font-family:'Playfair Display',serif;font-size:2.2rem;font-weight:700;color:var(--herb-green); }
+.sl { font-size:0.82rem;color:var(--text-light);text-transform:uppercase;letter-spacing:0.06em; }
+.prac-grid { display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem; }
+.pcard { background:var(--white);border:1px solid var(--border);border-radius:4px;padding:1.5rem; }
+.pi { font-size:2rem;margin-bottom:0.75rem; }
+.pcard h3 { font-size:1rem;margin-bottom:0.5rem; }
+.pcard p { font-size:0.88rem;line-height:1.6; }
+@media(max-width:1000px){.prac-grid{grid-template-columns:1fr 1fr;}.stg{grid-template-columns:1fr 1fr;}}
+@media(max-width:768px){.two-col{grid-template-columns:1fr;gap:2rem;}.stg,.prac-grid{grid-template-columns:1fr;}}
+</style>

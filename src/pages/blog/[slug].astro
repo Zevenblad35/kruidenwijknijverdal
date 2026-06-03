@@ -1,0 +1,95 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { blogPosts } from '../../content/data';
+
+export function getStaticPaths() {
+  return blogPosts.map(post => ({
+    params: { slug: post.slug },
+    props: { post }
+  }));
+}
+
+const { post } = Astro.props;
+
+const formattedDate = new Date(post.date).toLocaleDateString('nl-NL', {
+  weekday: 'long',
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric'
+});
+
+const categoryColors: Record<string, string> = {
+  'Wijk': 'tag--sage',
+  'Groen': 'tag--sage',
+  'Evenement': 'tag--terracotta',
+  'Bewoners': 'tag--wheat',
+  'Duurzaamheid': 'tag--sage',
+};
+---
+
+<BaseLayout title={post.title} description={post.excerpt}>
+  <article class="blog-detail">
+    <div class="blog-detail__header">
+      <div class="container container--narrow" style="position:relative; z-index:1;">
+        <a href="/blog/" class="blog-detail__back">← Terug naar blog</a>
+        <div class="blog-detail__meta">
+          <span class:list={['tag', categoryColors[post.category] || 'tag--sage']}>{post.category}</span>
+          <time datetime={post.date}>{formattedDate}</time>
+        </div>
+        <h1>{post.title}</h1>
+      </div>
+    </div>
+    <div class="container container--narrow">
+      <div class="prose" set:html={post.content} />
+      <div class="blog-detail__footer">
+        <a href="/blog/" class="btn btn--outline">← Alle berichten</a>
+      </div>
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .blog-detail__header {
+    background: linear-gradient(135deg, var(--sage-dark), var(--sage));
+    padding: 4rem 0 3rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .blog-detail__header::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 20% 50%, rgba(255,255,255,.08) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .blog-detail__header h1 {
+    color: #fff;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+  }
+  .blog-detail__back {
+    display: inline-block;
+    color: rgba(255,255,255,.7);
+    font-size: .85rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    transition: color .3s;
+  }
+  .blog-detail__back:hover { color: #fff; }
+  .blog-detail__meta {
+    display: flex;
+    align-items: center;
+    gap: .75rem;
+    margin-bottom: 1rem;
+  }
+  .blog-detail__meta time {
+    font-size: .85rem;
+    color: rgba(255,255,255,.7);
+  }
+  .blog-detail .prose {
+    padding: 3rem 0;
+  }
+  .blog-detail__footer {
+    padding: 2rem 0 4rem;
+    border-top: 1px solid var(--sage-muted);
+  }
+</style>

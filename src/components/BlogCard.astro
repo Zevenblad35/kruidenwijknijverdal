@@ -1,0 +1,136 @@
+---
+interface Props {
+  title: string;
+  slug: string;
+  date: string;
+  excerpt: string;
+  category: string;
+  image?: string;
+}
+
+const { title, slug, date, excerpt, category, image } = Astro.props;
+
+const categoryColors: Record<string, string> = {
+  'Wijk': 'tag--sage',
+  'Groen': 'tag--sage',
+  'Evenement': 'tag--terracotta',
+  'Bewoners': 'tag--wheat',
+  'Duurzaamheid': 'tag--sage',
+};
+
+const formattedDate = new Date(date).toLocaleDateString('nl-NL', {
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric'
+});
+---
+
+<article class="blog-card animate-in">
+  <div class="blog-card__image">
+    <div class="blog-card__placeholder" data-cat={category}>
+      <span>{category === 'Groen' ? '🌱' : category === 'Evenement' ? '🎉' : category === 'Bewoners' ? '🏠' : '🌿'}</span>
+    </div>
+  </div>
+  <div class="blog-card__body">
+    <div class="blog-card__meta">
+      <span class:list={['tag', categoryColors[category] || 'tag--sage']}>{category}</span>
+      <time datetime={date}>{formattedDate}</time>
+    </div>
+    <h3 class="blog-card__title">
+      <a href={`/blog/${slug}/`}>{title}</a>
+    </h3>
+    <p class="blog-card__excerpt">{excerpt}</p>
+    <a href={`/blog/${slug}/`} class="blog-card__link">
+      Lees verder →
+    </a>
+  </div>
+</article>
+
+<style>
+  .blog-card {
+    background: #fff;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    box-shadow: var(--shadow-card);
+    transition: all 0.4s var(--ease-out);
+  }
+
+  .blog-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-hover);
+  }
+
+  .blog-card__image {
+    height: 200px;
+    overflow: hidden;
+  }
+
+  .blog-card__placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--sage-pale), var(--sage-muted));
+    font-size: 3rem;
+  }
+
+  .blog-card__placeholder[data-cat="Evenement"] {
+    background: linear-gradient(135deg, #FCEEE5, #F5D6C0);
+  }
+
+  .blog-card__placeholder[data-cat="Bewoners"] {
+    background: linear-gradient(135deg, #FEF5E0, #F0D78C);
+  }
+
+  .blog-card__body {
+    padding: 1.5rem;
+  }
+
+  .blog-card__meta {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .blog-card__meta time {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+  }
+
+  .blog-card__title {
+    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
+  }
+
+  .blog-card__title a {
+    color: var(--bark);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+
+  .blog-card__title a:hover {
+    color: var(--sage);
+  }
+
+  .blog-card__excerpt {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin-bottom: 1rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .blog-card__link {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--sage);
+  }
+
+  .blog-card__link:hover {
+    color: var(--sage-dark);
+  }
+</style>

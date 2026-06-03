@@ -1,0 +1,68 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+const blogs = [
+  { slug: 'kruidentuin-aanleggen', title: 'Zelf een kruidentuin aanleggen in je voortuin', datum: '15 mei 2025', categorie: 'Tuinieren', auteur: 'Marieke de Vries', excerpt: 'Ontdek hoe je met een paar simpele stappen een prachtige kruidentuin kunt aanleggen, die ook nog eens bijdraagt aan de biodiversiteit in de wijk.', emoji: '🌱' },
+  { slug: 'buurtpicknick-2025', title: 'Terugblik: de grote buurtpicknick', datum: '2 juni 2025', categorie: 'Buurtnieuws', auteur: 'Jan Hofman', excerpt: 'Met meer dan 80 bewoners was de jaarlijkse buurtpicknick op het Kruidenplein een groot succes.', emoji: '🧺' },
+  { slug: 'vlindertuin-initiatief', title: 'Nieuw initiatief: vlindertuin bij de ingang', datum: '20 april 2025', categorie: 'Natuur', auteur: 'Anke Smit', excerpt: 'Een groep enthousiaste bewoners plant dit voorjaar een speciale vlindertuin op de hoek van de Lavendelstraat.', emoji: '🦋' },
+  { slug: 'wateroverlast-tips', title: 'Wateroverlast in de tuin? Dit kun je doen', datum: '8 april 2025', categorie: 'Tuinieren', auteur: 'Piet Klaassen', excerpt: 'Na de natte winter kampen veel bewoners met wateroverlast. Praktische tips om je tuin beter bestand te maken.', emoji: '💧' },
+  { slug: 'bewonersavond-terugblik', title: 'Bewonersavond over parkeerbeleid: samenvatting', datum: '15 maart 2025', categorie: 'Wijk & Bestuur', auteur: 'Redactie Kruidenwijk', excerpt: 'Tijdens de drukbezochte bewonersavond spraken tientallen bewoners over het nieuwe parkeerbeleid.', emoji: '🗳️' },
+  { slug: 'groene-gevels', title: 'Groene gevels: meer biodiversiteit in de straat', datum: '1 maart 2025', categorie: 'Natuur', auteur: 'Marieke de Vries', excerpt: 'Klimop, wingerd of een moswand: met een groene gevel doe je iets moois voor de natuur en je eigen huis.', emoji: '🌿' },
+];
+const cats = ['Alle', 'Tuinieren', 'Buurtnieuws', 'Natuur', 'Wijk & Bestuur'];
+---
+<BaseLayout title="Blog" description="Nieuws en verhalen uit de Kruidenwijk Nijverdal">
+<div class="ph"><div class="container"><div class="bc"><a href="/">Home</a> › Blog</div><h1>Nieuws &amp; Blog</h1><p class="pd">Verhalen, updates en inspiratie uit de Kruidenwijk</p></div></div>
+<section class="section"><div class="container">
+  <div class="fbar">{cats.map(c => <button class={`fbtn ${c==='Alle'?'active':''}`} data-filter={c}>{c}</button>)}</div>
+  <div class="bg" id="bg">
+    {blogs.map(b => (
+      <article class="bc2 card" data-cat={b.categorie}>
+        <div class="bt">{b.emoji}</div>
+        <div class="bb">
+          <div class="bm"><span class="tag">{b.categorie}</span><span class="bd">{b.datum}</span></div>
+          <h2 class="bti"><a href={`/blogs/${b.slug}`}>{b.title}</a></h2>
+          <p class="be">{b.excerpt}</p>
+          <div class="bf"><span class="ba">✍️ {b.auteur}</span><a href={`/blogs/${b.slug}`} class="bl">Lees verder →</a></div>
+        </div>
+      </article>
+    ))}
+  </div>
+</div></section>
+</BaseLayout>
+<script>
+const btns = document.querySelectorAll('.fbtn');
+const cards = document.querySelectorAll('.bc2');
+btns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    btns.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const f = (btn as HTMLElement).dataset.filter;
+    cards.forEach(c => { (c as HTMLElement).style.display = (f==='Alle'||(c as HTMLElement).dataset.cat===f)?'':'none'; });
+  });
+});
+</script>
+<style>
+.ph { background:linear-gradient(135deg,var(--sage-dark),var(--herb-green));padding:3rem 0 2.5rem;color:var(--white); }
+.bc { font-size:0.82rem;color:rgba(255,255,255,0.65);margin-bottom:0.75rem; }
+.bc a { color:rgba(255,255,255,0.65); }
+.ph h1 { color:var(--white);margin-bottom:0.5rem; }
+.pd { color:rgba(255,255,255,0.75); }
+.fbar { display:flex;gap:0.5rem;flex-wrap:wrap;margin-bottom:2.5rem; }
+.fbtn { padding:0.5rem 1.1rem;border:1.5px solid var(--border);background:transparent;color:var(--text-mid);border-radius:2px;font-size:0.85rem;cursor:pointer;transition:all 0.2s;font-family:'DM Sans',sans-serif; }
+.fbtn:hover,.fbtn.active { background:var(--herb-green);border-color:var(--herb-green);color:var(--white); }
+.bg { display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem; }
+.bc2 { display:flex;flex-direction:column; }
+.bt { background:var(--parchment);font-size:2.5rem;padding:1.5rem;text-align:center;display:flex;align-items:center;justify-content:center;min-height:100px; }
+.bb { padding:1.5rem;display:flex;flex-direction:column;flex:1; }
+.bm { display:flex;align-items:center;gap:0.75rem;margin-bottom:0.75rem; }
+.bd { font-size:0.8rem;color:var(--text-light); }
+.bti { font-size:1.1rem;margin-bottom:0.75rem;font-family:'Playfair Display',serif; }
+.bti a { color:var(--herb-green); }
+.bti a:hover { color:var(--terracotta); }
+.be { font-size:0.9rem;line-height:1.6;flex:1;margin-bottom:1rem; }
+.bf { display:flex;align-items:center;justify-content:space-between; }
+.ba { font-size:0.82rem;color:var(--text-light); }
+.bl { font-size:0.85rem;font-weight:500;color:var(--sage-dark); }
+@media(max-width:900px){.bg{grid-template-columns:1fr 1fr;}}
+@media(max-width:600px){.bg{grid-template-columns:1fr;}}
+</style>

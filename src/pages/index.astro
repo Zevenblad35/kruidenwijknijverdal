@@ -1,0 +1,129 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import BlogCard from '../components/BlogCard.astro';
+import EventCard from '../components/EventCard.astro';
+import { blogPosts, events } from '../content/data';
+
+const latestPosts = blogPosts.slice(0, 3);
+const upcomingEvents = events.filter(e => new Date(e.date) >= new Date()).slice(0, 3);
+---
+
+<BaseLayout title="Home">
+  <section class="hero">
+    <div class="hero__bg"></div>
+    <div class="container">
+      <div class="hero__content">
+        <span class="hero__label">🌿 Welkom in de</span>
+        <h1 class="hero__title">Kruidenwijk<br/><span>Nijverdal</span></h1>
+        <p class="hero__desc">De groene wijk van Nijverdal. Ontdek het laatste nieuws, evenementen en verhalen uit onze levendige buurt.</p>
+        <div class="hero__actions">
+          <a href="/evenementen/" class="btn btn--primary">Bekijk evenementen</a>
+          <a href="/blog/" class="btn btn--outline">Lees het nieuws</a>
+        </div>
+      </div>
+    </div>
+    <div class="hero__scroll">
+      <span>Scroll</span>
+      <div class="hero__scroll-line"></div>
+    </div>
+  </section>
+
+  <section class="stats">
+    <div class="container">
+      <div class="stats__grid">
+        <div class="stats__item"><span class="stats__icon">🏡</span><span class="stats__number">800+</span><span class="stats__label">Huishoudens</span></div>
+        <div class="stats__item"><span class="stats__icon">🌳</span><span class="stats__number">15</span><span class="stats__label">Straten</span></div>
+        <div class="stats__item"><span class="stats__icon">🎉</span><span class="stats__number">20+</span><span class="stats__label">Evenementen per jaar</span></div>
+        <div class="stats__item"><span class="stats__icon">🤝</span><span class="stats__number">1991</span><span class="stats__label">Sinds</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--linen">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-header__label">Nieuws & Blog</span>
+        <h2 class="section-header__title">Laatste berichten</h2>
+        <p class="section-header__desc">Blijf op de hoogte van alles wat er speelt in de Kruidenwijk</p>
+      </div>
+      <div class="card-grid">
+        {latestPosts.map(post => (
+          <BlogCard title={post.title} slug={post.slug} date={post.date} excerpt={post.excerpt} category={post.category} />
+        ))}
+      </div>
+      <div style="text-align:center; margin-top:2.5rem;">
+        <a href="/blog/" class="btn btn--outline">Alle berichten bekijken</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-header__label">Agenda</span>
+        <h2 class="section-header__title">Komende evenementen</h2>
+        <p class="section-header__desc">Doe mee en ontmoet je buren bij een van deze activiteiten</p>
+      </div>
+      <div class="events-list">
+        {upcomingEvents.map(event => (
+          <EventCard title={event.title} slug={event.slug} date={event.date} time={event.time} location={event.location} description={event.description} />
+        ))}
+      </div>
+      <div style="text-align:center; margin-top:2.5rem;">
+        <a href="/evenementen/" class="btn btn--outline">Alle evenementen bekijken</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta">
+    <div class="container">
+      <div class="cta__inner">
+        <div class="cta__text">
+          <h2>Blijf op de hoogte</h2>
+          <p>Wil je niets missen uit de Kruidenwijk? Neem contact op met de wijkraad of kom langs bij buurthuis De Tijm.</p>
+        </div>
+        <a href="mailto:info@kruidenwijknijverdal.nl" class="btn btn--primary">Neem contact op</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .hero { position:relative; min-height:85vh; display:flex; align-items:center; overflow:hidden; }
+  .hero__bg { position:absolute; inset:0; background:linear-gradient(160deg,#3D5137 0%,#5B7553 40%,#8FA886 100%); z-index:0; }
+  .hero__bg::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse at 15% 80%,rgba(196,127,90,.15) 0%,transparent 50%),radial-gradient(ellipse at 85% 15%,rgba(212,168,67,.12) 0%,transparent 45%); }
+  .hero__bg::after { content:''; position:absolute; bottom:-2px; left:0; right:0; height:80px; background:var(--cream); clip-path:ellipse(55% 100% at 50% 100%); }
+  .hero .container { position:relative; z-index:1; }
+  .hero__content { max-width:640px; animation:fadeInUp .8s var(--ease-out); }
+  .hero__label { display:inline-block; font-size:.9rem; font-weight:600; color:rgba(255,255,255,.75); letter-spacing:.05em; margin-bottom:.75rem; }
+  .hero__title { font-family:var(--font-display); font-size:clamp(3rem,8vw,5rem); font-weight:700; color:#fff; line-height:1.05; margin-bottom:1.25rem; }
+  .hero__title span { font-weight:400; font-style:italic; opacity:.85; font-size:.65em; }
+  .hero__desc { font-size:1.15rem; color:rgba(255,255,255,.8); max-width:45ch; margin-bottom:2rem; line-height:1.7; }
+  .hero__actions { display:flex; gap:1rem; flex-wrap:wrap; }
+  .hero__actions .btn--primary { background:#fff; color:var(--sage-dark); border-color:#fff; }
+  .hero__actions .btn--primary:hover { background:var(--linen); border-color:var(--linen); }
+  .hero__actions .btn--outline { color:rgba(255,255,255,.9); border-color:rgba(255,255,255,.4); }
+  .hero__actions .btn--outline:hover { background:rgba(255,255,255,.15); border-color:rgba(255,255,255,.6); color:#fff; }
+  .hero__scroll { position:absolute; bottom:2.5rem; left:50%; transform:translateX(-50%); z-index:2; display:flex; flex-direction:column; align-items:center; gap:.5rem; color:rgba(255,255,255,.4); font-size:.7rem; font-weight:600; letter-spacing:.15em; text-transform:uppercase; }
+  .hero__scroll-line { width:1px; height:32px; background:rgba(255,255,255,.3); animation:scrollPulse 2s ease-in-out infinite; }
+  @keyframes scrollPulse { 0%,100% { opacity:.3; transform:scaleY(.6); } 50% { opacity:1; transform:scaleY(1); } }
+  .stats { padding:3rem 0; margin-top:-1rem; position:relative; z-index:3; }
+  .stats__grid { display:grid; grid-template-columns:repeat(4,1fr); gap:1.5rem; }
+  .stats__item { display:flex; flex-direction:column; align-items:center; text-align:center; padding:1.5rem; background:#fff; border-radius:var(--radius-md); box-shadow:var(--shadow-card); }
+  .stats__icon { font-size:1.5rem; margin-bottom:.5rem; }
+  .stats__number { font-family:var(--font-display); font-size:1.8rem; font-weight:700; color:var(--sage-dark); line-height:1; }
+  .stats__label { font-size:.8rem; color:var(--text-muted); margin-top:.25rem; }
+  .events-list { display:flex; flex-direction:column; gap:1.25rem; max-width:800px; margin:0 auto; }
+  .cta { padding:4rem 0; }
+  .cta__inner { display:flex; align-items:center; justify-content:space-between; gap:2rem; padding:3rem; background:linear-gradient(135deg,var(--sage-dark),var(--sage)); border-radius:var(--radius-lg); color:#fff; }
+  .cta__inner h2 { color:#fff; margin-bottom:.5rem; font-size:1.6rem; }
+  .cta__inner p { color:rgba(255,255,255,.8); max-width:45ch; }
+  .cta__inner .btn--primary { background:#fff; color:var(--sage-dark); border-color:#fff; flex-shrink:0; }
+  .cta__inner .btn--primary:hover { background:var(--linen); }
+  @media (max-width:768px) {
+    .hero { min-height:75vh; }
+    .hero__scroll { display:none; }
+    .stats__grid { grid-template-columns:repeat(2,1fr); }
+    .cta__inner { flex-direction:column; text-align:center; padding:2rem; }
+  }
+</style>

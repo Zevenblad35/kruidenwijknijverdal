@@ -1,0 +1,118 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer class="footer">
+  <div class="footer__top">
+    <div class="container">
+      <div class="footer__grid">
+        <div class="footer__brand">
+          <span class="footer__logo">🌿 Kruidenwijk</span>
+          <p class="footer__desc">De groene wijk van Nijverdal. Een fijne plek om te wonen, te leven en samen te zijn.</p>
+        </div>
+        <div class="footer__col">
+          <h4>Pagina's</h4>
+          <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/blog/">Blog</a></li>
+            <li><a href="/evenementen/">Evenementen</a></li>
+            <li><a href="/over-ons/">Over Ons</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4>Contact</h4>
+          <ul>
+            <li>Kruidenwijk, Nijverdal</li>
+            <li>Overijssel, Nederland</li>
+            <li><a href="mailto:info@kruidenwijknijverdal.nl">info@kruidenwijknijverdal.nl</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer__bottom">
+    <div class="container">
+      <p>&copy; {year} Kruidenwijk Nijverdal. Alle rechten voorbehouden.</p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    background: var(--sage-dark);
+    color: rgba(255,255,255,0.8);
+  }
+
+  .footer__top {
+    padding: 3.5rem 0 2.5rem;
+  }
+
+  .footer__grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 3rem;
+  }
+
+  .footer__logo {
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #fff;
+    display: block;
+    margin-bottom: 0.75rem;
+  }
+
+  .footer__desc {
+    color: rgba(255,255,255,0.65);
+    font-size: 0.9rem;
+    line-height: 1.7;
+    max-width: 30ch;
+  }
+
+  .footer__col h4 {
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 1rem;
+  }
+
+  .footer__col ul {
+    list-style: none;
+  }
+
+  .footer__col li {
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+    color: rgba(255,255,255,0.7);
+  }
+
+  .footer__col a {
+    color: rgba(255,255,255,0.7);
+    transition: color 0.3s;
+  }
+
+  .footer__col a:hover {
+    color: #fff;
+  }
+
+  .footer__bottom {
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding: 1.25rem 0;
+  }
+
+  .footer__bottom p {
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.4);
+    text-align: center;
+  }
+
+  @media (max-width: 768px) {
+    .footer__grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+  }
+</style>

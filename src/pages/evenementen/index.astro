@@ -1,0 +1,54 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import EventCard from '../../components/EventCard.astro';
+import { events } from '../../content/data';
+
+const sortedEvents = [...events].sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
+const upcoming = sortedEvents.filter(e => new Date(e.date) >= new Date());
+const past = sortedEvents.filter(e => new Date(e.date) < new Date());
+---
+
+<BaseLayout title="Evenementen" description="Alle evenementen en activiteiten in de Kruidenwijk Nijverdal.">
+  <div class="page-hero">
+    <div class="container" style="position:relative; z-index:1;">
+      <h1>Evenementen</h1>
+      <p>Ontdek wat er te doen is in de Kruidenwijk. Van buurtfeesten tot workshops.</p>
+    </div>
+  </div>
+
+  {upcoming.length > 0 && (
+    <section class="section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-header__label">Binnenkort</span>
+          <h2 class="section-header__title">Komende evenementen</h2>
+        </div>
+        <div class="events-list">
+          {upcoming.map(event => (
+            <EventCard title={event.title} slug={event.slug} date={event.date} time={event.time} location={event.location} description={event.description} />
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  {past.length > 0 && (
+    <section class="section section--linen">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-header__label">Archief</span>
+          <h2 class="section-header__title">Afgelopen evenementen</h2>
+        </div>
+        <div class="events-list">
+          {past.map(event => (
+            <EventCard title={event.title} slug={event.slug} date={event.date} time={event.time} location={event.location} description={event.description} />
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+</BaseLayout>
+
+<style>
+  .events-list { display:flex; flex-direction:column; gap:1.25rem; max-width:800px; margin:0 auto; }
+</style>

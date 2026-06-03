@@ -1,0 +1,63 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+<BaseLayout title="Kruidenworkshop: Medicinale planten">
+<div class="ph"><div class="container"><div class="bc"><a href="/">Home</a> › <a href="/evenementen">Evenementen</a> › Kruidenworkshop</div></div></div>
+<section class="section"><div class="container el">
+  <article class="em">
+    <div class="eh"><span class="ee">🌿</span><span class="ecb">Workshop</span></div>
+    <h1 class="eti">Kruidenworkshop: Medicinale planten</h1>
+    <div class="edb">
+      <div class="ep">📅 14 juni 2025</div>
+      <div class="ep">🕐 14:00 – 16:30</div>
+      <div class="ep">📍 Buurtcentrum De Groene Stee</div>
+      <div class="ep">💶 Gratis voor leden / €5 voor niet-leden</div>
+    </div>
+    <div class="prose">
+      <p>Welkom bij onze populaire kruidenworkshop over medicinale planten! In deze interactieve middag leer je alles over de geneeskrachtige werking van gewone kruiden die misschien al in jouw tuin groeien.</p>
+      <h2>Wat ga je leren?</h2>
+      <p>Onder begeleiding van kruidenkundige Ans Hartman gaan we aan de slag met een breed scala aan medicinale planten.</p>
+      <ul>
+        <li>Herkenning van tien medicinale planten uit onze regio</li>
+        <li>De werking en toepassingen van elk kruid</li>
+        <li>Praktisch: kruiden drogen, thee zetten en een eenvoudige zalf maken</li>
+        <li>Tips voor het kweken van medicinale kruiden in je eigen tuin</li>
+      </ul>
+      <h2>Voor wie?</h2>
+      <p>Deze workshop is geschikt voor iedereen. Er zijn maximaal 20 deelnemers, zodat er volop ruimte is voor vragen en persoonlijke aandacht.</p>
+      <h2>Wat neem je mee naar huis?</h2>
+      <p>Alle deelnemers ontvangen een klein setje gedroogde kruiden én een receptenboekje. Koffie en thee zijn aanwezig.</p>
+    </div>
+  </article>
+  <aside class="es">
+    <div class="sc"><h3>Aanmelden</h3>
+      <div class="ri"><div class="rr"><span>Datum</span><strong>14 juni 2025</strong></div><div class="rr"><span>Tijd</span><strong>14:00 – 16:30</strong></div><div class="rr"><span>Locatie</span><strong>De Groene Stee</strong></div><div class="rr"><span>Kosten</span><strong>Gratis / €5</strong></div><div class="rr"><span>Begeleider</span><strong>Ans Hartman</strong></div><div class="rr"><span>Max. deelnemers</span><strong>20</strong></div></div>
+      <a href="/contact" class="btn btn-primary" style="width:100%;text-align:center;margin-top:1rem">Aanmelden</a>
+    </div>
+    <div class="sc"><h3>Meer evenementen</h3><ul class="sl"><li><a href="/evenementen/schoonmaakdag">🧹 Wijkschoonmaakdag</a></li><li><a href="/evenementen/zomerfeest">🎉 Zomerfeest</a></li></ul><a href="/evenementen" class="btn btn-outline" style="width:100%;text-align:center;margin-top:1rem;font-size:0.82rem">Alle evenementen</a></div>
+  </aside>
+</div></section>
+</BaseLayout>
+<style>
+.ph { background:var(--parchment);border-bottom:1px solid var(--border);padding:1.25rem 0; }
+.bc { font-size:0.82rem;color:var(--text-light);display:flex;gap:0.4rem;flex-wrap:wrap; }
+.bc a { color:var(--sage-dark); }
+.el { display:grid;grid-template-columns:1fr 320px;gap:3rem;align-items:start; }
+.eh { background:var(--parchment);padding:2.5rem;display:flex;align-items:center;justify-content:center;position:relative;border-radius:4px;margin-bottom:2rem;border:1px solid var(--border); }
+.ee { font-size:4rem; }
+.ecb { position:absolute;top:1rem;right:1rem;background:var(--herb-green);color:var(--white);font-size:0.72rem;letter-spacing:0.06em;text-transform:uppercase;padding:0.3rem 0.7rem;border-radius:2px; }
+.eti { font-size:clamp(1.5rem,3vw,2.2rem);margin-bottom:1.5rem; }
+.edb { display:flex;flex-wrap:wrap;gap:0.6rem;margin-bottom:2rem; }
+.ep { display:inline-flex;align-items:center;gap:0.35rem;background:var(--parchment);border:1px solid var(--border);border-radius:2px;padding:0.4rem 0.85rem;font-size:0.85rem;color:var(--text-mid); }
+.sc { background:var(--white);border:1px solid var(--border);border-radius:4px;padding:1.5rem;margin-bottom:1.25rem; }
+.sc h3 { font-size:1rem;margin-bottom:1rem;color:var(--herb-green); }
+.ri { display:flex;flex-direction:column;gap:0; }
+.rr { display:flex;justify-content:space-between;font-size:0.86rem;padding:0.4rem 0;border-bottom:1px solid var(--border);gap:0.5rem; }
+.rr:last-child { border-bottom:none; }
+.rr span { color:var(--text-light); }
+.rr strong { color:var(--text-dark);text-align:right; }
+.sl { list-style:none;display:flex;flex-direction:column;gap:0.6rem; }
+.sl a { font-size:0.9rem;color:var(--text-mid); }
+.sl a:hover { color:var(--terracotta); }
+@media(max-width:900px){.el{grid-template-columns:1fr;}.es{order:-1;}}
+</style>

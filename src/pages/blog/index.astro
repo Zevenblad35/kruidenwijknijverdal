@@ -1,0 +1,32 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import BlogCard from '../../components/BlogCard.astro';
+import { blogPosts } from '../../content/data';
+
+const sortedPosts = [...blogPosts].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+---
+
+<BaseLayout title="Blog" description="Nieuws, verhalen en updates uit de Kruidenwijk Nijverdal.">
+  <div class="page-hero">
+    <div class="container" style="position:relative; z-index:1;">
+      <h1>Blog & Nieuws</h1>
+      <p>Alle berichten, verhalen en updates uit de Kruidenwijk.</p>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="container">
+      <div class="card-grid">
+        {sortedPosts.map(post => (
+          <BlogCard
+            title={post.title}
+            slug={post.slug}
+            date={post.date}
+            excerpt={post.excerpt}
+            category={post.category}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,107 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+<BaseLayout title="Contact">
+<div class="ph"><div class="container"><div class="bc"><a href="/">Home</a> › Contact</div><h1>Contact &amp; Meedoen</h1><p class="pd">Vragen, ideeën of gewoon hallo zeggen? Wij horen het graag!</p></div></div>
+<section class="section"><div class="container cg">
+  <div class="cf">
+    <h2>Stuur ons een bericht</h2>
+    <p class="fi">Heb je een vraag, idee of wil je lid worden? Vul het formulier in.</p>
+    <form id="cForm">
+      <div class="fr">
+        <div class="fg"><label for="naam">Naam *</label><input type="text" id="naam" required placeholder="Jouw naam" /></div>
+        <div class="fg"><label for="email">E-mailadres *</label><input type="email" id="email" required placeholder="jij@email.nl" /></div>
+      </div>
+      <div class="fg">
+        <label for="ond">Onderwerp</label>
+        <select id="ond">
+          <option value="">Kies een onderwerp...</option>
+          <option>Algemene vraag</option>
+          <option>Lidmaatschap wijkvereniging</option>
+          <option>Idee of initiatief</option>
+          <option>Evenement aanvragen</option>
+          <option>Melding of klacht</option>
+        </select>
+      </div>
+      <div class="fg"><label for="ber">Bericht *</label><textarea id="ber" rows={6} required placeholder="Schrijf hier je bericht..."></textarea></div>
+      <div class="fck"><input type="checkbox" id="nw" /><label for="nw">Ja, ik ontvang graag de maandelijkse nieuwsbrief</label></div>
+      <button type="submit" class="btn btn-primary" style="width:100%;text-align:center">Verstuur bericht</button>
+    </form>
+    <div id="succ" style="display:none" class="succ">
+      <div style="font-size:3rem;margin-bottom:1rem">✅</div>
+      <h3>Bedankt voor je bericht!</h3>
+      <p>We nemen zo snel mogelijk contact met je op, meestal binnen 2 werkdagen.</p>
+    </div>
+  </div>
+  <aside class="ci">
+    <div class="ic">
+      <h3>Contactgegevens</h3>
+      <div class="ii"><span>📧</span><div><strong>E-mail</strong><a href="mailto:info@kruidenwijknijverdal.nl">info@kruidenwijknijverdal.nl</a></div></div>
+      <div class="ii"><span>📍</span><div><strong>Adres</strong><span>Kruidenwijk, 7441 Nijverdal<br/>Gemeente Hellendoorn</span></div></div>
+      <div class="ii"><span>🕐</span><div><strong>Reactietijd</strong><span>Binnen 2 werkdagen</span></div></div>
+    </div>
+    <div class="ic">
+      <h3>Buurtcentrum De Groene Stee</h3>
+      <p>Het buurtcentrum is het verzamelpunt van de wijk voor vergaderingen, workshops en andere activiteiten.</p>
+      <div class="ot">
+        <div class="otr"><span>Ma – vr</span><span>09:00–17:00</span></div>
+        <div class="otr"><span>Zaterdag</span><span>10:00–14:00</span></div>
+        <div class="otr"><span>Zondag</span><span>Gesloten</span></div>
+      </div>
+    </div>
+    <div class="ic">
+      <h3>Volg ons</h3>
+      <div class="soc">
+        <a href="#" class="sl">📘 Facebook</a>
+        <a href="#" class="sl">📸 Instagram</a>
+        <a href="#" class="sl">💬 WhatsApp buurtgroep</a>
+      </div>
+    </div>
+  </aside>
+</div></section>
+</BaseLayout>
+<script>
+document.getElementById('cForm')?.addEventListener('submit', e => {
+  e.preventDefault();
+  document.getElementById('cForm')!.style.display = 'none';
+  document.getElementById('succ')!.style.display = 'block';
+});
+</script>
+<style>
+.ph { background:linear-gradient(135deg,var(--sage-dark),var(--herb-green));padding:3rem 0 2.5rem;color:var(--white); }
+.bc { font-size:0.82rem;color:rgba(255,255,255,0.65);margin-bottom:0.75rem;display:flex;gap:0.4rem; }
+.bc a { color:rgba(255,255,255,0.65); }
+.ph h1 { color:var(--white);margin-bottom:0.5rem; }
+.pd { color:rgba(255,255,255,0.75); }
+.cg { display:grid;grid-template-columns:1fr 360px;gap:3rem;align-items:start; }
+.cf h2 { margin-bottom:0.5rem; }
+.fi { color:var(--text-light);margin-bottom:2rem;font-size:0.95rem; }
+form { display:flex;flex-direction:column;gap:1.25rem; }
+.fr { display:grid;grid-template-columns:1fr 1fr;gap:1rem; }
+.fg { display:flex;flex-direction:column;gap:0.4rem; }
+.fg label { font-size:0.85rem;font-weight:500;color:var(--text-dark); }
+.fg input,.fg select,.fg textarea { padding:0.75rem 1rem;border:1.5px solid var(--border);border-radius:2px;background:var(--white);font-family:'DM Sans',sans-serif;font-size:0.95rem;color:var(--text-dark);transition:border-color 0.2s;outline:none; }
+.fg input:focus,.fg select:focus,.fg textarea:focus { border-color:var(--sage); }
+.fg textarea { resize:vertical; }
+.fck { display:flex;align-items:center;gap:0.6rem; }
+.fck label { font-size:0.88rem;color:var(--text-mid);cursor:pointer; }
+.succ { text-align:center;padding:3rem 2rem;background:var(--white);border:1px solid var(--border);border-radius:4px; }
+.succ h3 { margin-bottom:0.75rem; }
+.succ p { color:var(--text-light); }
+.ic { background:var(--white);border:1px solid var(--border);border-radius:4px;padding:1.5rem;margin-bottom:1.25rem; }
+.ic h3 { font-size:1rem;margin-bottom:1rem;color:var(--herb-green); }
+.ii { display:flex;gap:0.75rem;align-items:flex-start;margin-bottom:0.75rem; }
+.ii:last-child { margin-bottom:0; }
+.ii > span { font-size:1.2rem;flex-shrink:0; }
+.ii strong { display:block;font-size:0.8rem;letter-spacing:0.06em;text-transform:uppercase;color:var(--text-light);margin-bottom:0.2rem; }
+.ii a,.ii span:not(:first-child) { font-size:0.9rem;color:var(--text-mid);line-height:1.5; }
+.ii a:hover { color:var(--herb-green); }
+.ic > p { font-size:0.9rem;margin-bottom:1rem;line-height:1.6; }
+.ot { border-top:1px solid var(--border);padding-top:0.75rem; }
+.otr { display:flex;justify-content:space-between;font-size:0.88rem;color:var(--text-mid);padding:0.35rem 0;border-bottom:1px solid var(--border); }
+.otr:last-child { border-bottom:none; }
+.soc { display:flex;flex-direction:column;gap:0.6rem; }
+.sl { display:block;font-size:0.9rem;padding:0.6rem 0.8rem;background:var(--cream);border-radius:2px;color:var(--text-mid);transition:background 0.2s; }
+.sl:hover { background:var(--parchment);color:var(--herb-green); }
+@media(max-width:900px){.cg{grid-template-columns:1fr;}.fr{grid-template-columns:1fr;}}
+</style>
